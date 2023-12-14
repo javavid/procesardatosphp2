@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="./styles.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-item grid-header">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="Estudiantes.html">Estudiantes</a></li>
+                <li><a href="Docentes.html">Docentes</a></li>
+               
+            </ul>
+        </div>
+        <div class="grid-item grid-article"> 
+            <form action="procesar.php" method="post">
+<div class="form-sections">
+<h2>Registro Notas</h2>
+<label for="periodo1">periodo1:</label>
+<input type="text" id="periodo1" name="periodo1" required>
+</div>
+
+<div class="form-sections">
+    <br>
+    <br>
+    <label for="periodo2">periodo2:</label>
+    <input type="text" id="periodo2" name="periodo2" required>
+    </div>
+
+    <div class="form-sections">
+        <br>
+        <br>
+        <label for="periodo3">periodo3:</label>
+        <input type="namber" id="periodo3" name="periodo3" required>
+        </div> 
+
+        <div class="form-sections">
+            <br>
+            <br>
+            <label for="periodo4">periodo4:</label>
+            <input type="namber" id="periodo4" name="periodo4" required>
+            </div> 
+            
+
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+                <div class="progress-bar-inner" style="width: 0;"></div>
+            </div>
+        </div>
+<button type="submit">Enviar</button>
+</form>
+<script>
+    //selecionar todas las secciones del formulario
+    const formSections=document.querySelectorAll('.form-sections');
+    //seleccionar barra de progreso.
+    const  progressBarInner=document.querySelector('.progress-bar-inner');
+    //interactuar sobre cada seccion del formulario
+    formSections.forEach(section =>{
+        //aggregar un evento listener para el evento 'input'
+        section.addEventListener('input', updateProgressbar);
+    });
+    function updateProgressbar(){
+        //seleccionamos todas las secciones del formulario que tienen campo valido
+        const completedSections=document.querySelectorAll('.form-sections input:valid').length;
+    // obtener el total de secciones en el formulario
+    const totalSections=formSections.length;
+    //calcular el progreso en porcentaje
+    const progress=(completedSections/totalSections)*100;
+    progressBarInner.style.width=`${progress}%`;
+    }
+</script>
+        </div>
+</div>
+</body>   
